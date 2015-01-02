@@ -8,20 +8,40 @@
 
 import Foundation
 
+// class variable workaround
+private var _numColonies = 0
+
 class Colony {
     // declare constants
     let size: Int
     let CELL_ALIVE = 1
     let CELL_DEAD = 0
-    // declare instance variables
+    let name: String
+    
+    // declare properties
     var numGens = 0
     var cells: [Int]
+    
+    // number of colonies
+    class var numColonies: Int {
+        get {
+            return _numColonies
+        }
+        
+        set {
+            _numColonies = newValue
+        }
+    }
     
     // constructor for Colony
     init(colonySize: Int) {
         size = colonySize
         // set memory of cells to 0, including "border of death"
         cells = [Int](count: ((size + 2)*(size + 2)), repeatedValue: CELL_DEAD)
+        // increment number of colonies
+        Colony.numColonies++
+        // set name based on number
+        name = "Colony #\(Colony.numColonies)"
     }
     
     // helper function to find virtual index in cells array

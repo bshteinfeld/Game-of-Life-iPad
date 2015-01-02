@@ -15,6 +15,7 @@
 		A3996BD61A57241F00AFC433 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3996BD41A57241F00AFC433 /* LaunchScreen.xib */; };
 		A3996BE21A57241F00AFC433 /* Game_of_Life_iPadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BE11A57241F00AFC433 /* Game_of_Life_iPadTests.swift */; };
 		A3996BEC1A5728ED00AFC433 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BEB1A5728ED00AFC433 /* Colony.swift */; };
+		A3996BEE1A5729A600AFC433 /* ColonyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BED1A5729A600AFC433 /* ColonyStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		A3996BE01A57241F00AFC433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3996BE11A57241F00AFC433 /* Game_of_Life_iPadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_of_Life_iPadTests.swift; sourceTree = "<group>"; };
 		A3996BEB1A5728ED00AFC433 /* Colony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
+		A3996BED1A5729A600AFC433 /* ColonyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				A3996BC91A57241F00AFC433 /* AppDelegate.swift */,
 				A3996BCB1A57241F00AFC433 /* MasterViewController.swift */,
 				A3996BEB1A5728ED00AFC433 /* Colony.swift */,
+				A3996BED1A5729A600AFC433 /* ColonyStore.swift */,
 				A3996BCD1A57241F00AFC433 /* DetailViewController.swift */,
 				A3996BCF1A57241F00AFC433 /* Main.storyboard */,
 				A3996BD21A57241F00AFC433 /* Images.xcassets */,
@@ -222,6 +225,7 @@
 				A3996BCC1A57241F00AFC433 /* MasterViewController.swift in Sources */,
 				A3996BCA1A57241F00AFC433 /* AppDelegate.swift in Sources */,
 				A3996BEC1A5728ED00AFC433 /* Colony.swift in Sources */,
+				A3996BEE1A5729A600AFC433 /* ColonyStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,9 +22,10 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let detail: Colony = self.detailItem as? Colony {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+                detail.setCellAliveAtRow(0, col: 0)
+                label.text = detail.name
             }
         }
     }
