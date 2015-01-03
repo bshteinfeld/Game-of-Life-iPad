@@ -20,6 +20,7 @@ class Colony: NSObject, NSCoding {
     var rows: Int
     var cols: Int
     var numGens = 0
+    var wrap = true
     var cells: [Int]
     var name: String
     
@@ -79,9 +80,39 @@ class Colony: NSObject, NSCoding {
         return (((cols + 2) * (row + 1)) + (col + 1))
     }
     
-    // helper functin to return value at coordinate
+    // helper function to return value at coordinate
     private func getValueAtRow(row: Int, col: Int) -> Int {
         return cells[index(row, col)]
+    }
+    
+    // helper function to get value at coordinate which may be wrapped
+    // works with and without wrapping enabled
+    private func getWrappedValueAtRow(row: Int, col: Int) -> Int {
+        // new row and col which correspond an out-of-bounds index to a valid wrapped one
+        var n_row = row, n_col = col
+        
+        // find new wrapped row location if applicable
+        if wrap {
+            if row < 0 {
+                n_row = rows + row
+            }
+            if row >= rows {
+                n_row = row - rows
+            }
+        }
+        
+        // find new wrapped col location if applicable
+        if wrap {
+            if col < 0 {
+                n_col = cols + col
+            }
+            if col >= cols {
+                n_col = col - cols
+            }
+        }
+        
+        // return value at valid wrapped location
+        return getValueAtRow(n_row, col: n_col)
     }
     
     // sets cell alive at coordinate
@@ -124,15 +155,15 @@ class Colony: NSObject, NSCoding {
     
     // count number of cells neighboring a cell
     private func countNeighbors(row: Int, col: Int) -> Int {
-        // get the values at 8 neighboring cells and take sum
-        return getValueAtRow(row + 1, col: col)
-            + getValueAtRow(row - 1, col: col)
-            + getValueAtRow(row, col: col + 1)
-            + getValueAtRow(row, col: col - 1)
-            + getValueAtRow(row + 1, col: col + 1)
-            + getValueAtRow(row - 1, col: col - 1)
-            + getValueAtRow(row + 1, col: col - 1)
-            + getValueAtRow(row - 1, col: col + 1)
+        // get the values at 8 neighboring cells and return their sum
+        return getWrappedValueAtRow(row + 1, col: col)
+            + getWrappedValueAtRow(row - 1, col: col)
+            + getWrappedValueAtRow(row, col: col + 1)
+            + getWrappedValueAtRow(row, col: col - 1)
+            + getWrappedValueAtRow(row + 1, col: col + 1)
+            + getWrappedValueAtRow(row - 1, col: col - 1)
+            + getWrappedValueAtRow(row + 1, col: col - 1)
+            + getWrappedValueAtRow(row - 1, col: col + 1)
     }
     
     // apply rules of Game of Life

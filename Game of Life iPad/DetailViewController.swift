@@ -42,6 +42,9 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func wrapToggled(sender: UISwitch) {
+        if let colony: Colony = self.detailItem as Colony! {
+            colony.wrap = sender.on
+        }
     }
     
     override func viewDidLoad() {
