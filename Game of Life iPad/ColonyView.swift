@@ -13,7 +13,7 @@ class ColonyView: UIView {
     // cell that is currently touched
     var curCellTouched: (Int, Int) = (-1, -1)
     var cellColor: UIColor = UIColor.greenColor()
-    var colony: Colony = Colony(colonySize: 30)
+    var colony: Colony = Colony(numRows: 30, numCols: 40)
     // size of graphical cells
     var cellSize: Float = -1.0
     var touchSettingAlive = true
@@ -40,11 +40,11 @@ class ColonyView: UIView {
         self.backgroundColor = UIColor.clearColor()
         
         // calculate cell size
-        cellSize = Float(bounds.width) / Float(colony.size);
+        cellSize = Float(bounds.width) / Float(colony.cols);
         
         // iterate through cells, painting alive ones
-        for r in 0..<colony.size {
-            for c in 0..<colony.size {
+        for r in 0..<colony.rows {
+            for c in 0..<colony.cols {
                 if colony.isCellAliveAtRow(r, col: c) {
                     cellColor = UIColor.greenColor()
                 } else {
@@ -74,7 +74,7 @@ class ColonyView: UIView {
         let col = Int(Float(point.x) / Float(cellSize))
         
         // check if the touched cell is already touched and that it is a valid cell
-        if notEqual(curCellTouched, tuple2: (row, col)) && row < colony.size && col < colony.size {
+        if notEqual(curCellTouched, tuple2: (row, col)) && row < colony.rows && col < colony.cols {
             // if the cell is alive, set it dead, else set it alive
             if colony.isCellAliveAtRow(row, col: col) {
                 colony.setCellDeadAtRow(row, col: col)
@@ -97,7 +97,7 @@ class ColonyView: UIView {
         let row = Int(Float(point.y) / Float(cellSize))
         let col = Int(Float(point.x) / Float(cellSize))
         
-        if notEqual(curCellTouched, tuple2: (row, col)) && row < colony.size && col < colony.size {
+        if notEqual(curCellTouched, tuple2: (row, col)) && row < colony.rows && col < colony.cols {
             if touchSettingAlive {
                 colony.setCellAliveAtRow(row, col: col)
             } else {

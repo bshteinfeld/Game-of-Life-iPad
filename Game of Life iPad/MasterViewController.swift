@@ -37,7 +37,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        objects.addColony(Colony(colonySize: 40))
+        objects.addColony(Colony(numRows: 30, numCols: 40))
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }

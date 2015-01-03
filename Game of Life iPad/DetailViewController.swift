@@ -15,8 +15,6 @@ class DetailViewController: UIViewController {
     var detailItem: Colony?
 
     func configureView() {
-        //colonyView = ColonyView()
-        
         // Update the user interface for the detail item.
         if let colony: Colony = self.detailItem as Colony! {
             colonyView.colony = colony

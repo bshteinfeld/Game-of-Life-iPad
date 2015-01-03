@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -31,12 +33,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOI-cC-oYH" customClass="ColonyView" customModule="Game_of_Life_iPad" customModuleProvider="target">
-                                <rect key="frame" x="100" y="100" width="400" height="400"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOI-cC-oYH" customClass="ColonyView" customModule="Game_of_Life_iPad" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="568" height="426"/>
+                                <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dOI-cC-oYH" secondAttribute="height" multiplier="4:3" id="VW3-gZ-GEm"/>
+                                </constraints>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2ZD-JI-TgW">
+                                <rect key="frame" x="14" y="518" width="572" height="31"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dOI-cC-oYH" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="Vxy-MP-JiE"/>
+                            <constraint firstItem="dOI-cC-oYH" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="WYs-1q-MDI"/>
+                            <constraint firstItem="dOI-cC-oYH" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="b7J-y2-eIS"/>
+                            <constraint firstItem="2ZD-JI-TgW" firstAttribute="top" secondItem="dOI-cC-oYH" secondAttribute="bottom" constant="20" id="iW6-6t-BNz"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
@@ -46,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="120"/>
+            <point key="canvasLocation" x="783" y="120"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

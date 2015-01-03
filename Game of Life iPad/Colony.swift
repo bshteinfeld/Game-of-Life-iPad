@@ -17,7 +17,8 @@ class Colony: NSObject, NSCoding {
     let CELL_DEAD = 0
     
     // declare properties
-    var size: Int
+    var rows: Int
+    var cols: Int
     var numGens = 0
     var cells: [Int]
     var name: String
@@ -34,10 +35,11 @@ class Colony: NSObject, NSCoding {
     }
     
     // constructor for Colony
-    init(colonySize: Int) {
-        size = colonySize
+    init(numRows: Int, numCols: Int) {
+        rows = numRows
+        cols = numCols
         // set memory of cells to 0, including "border of death"
-        cells = [Int](count: ((size + 2)*(size + 2)), repeatedValue: CELL_DEAD)
+        cells = [Int](count: ((rows + 2)*(cols + 2)), repeatedValue: CELL_DEAD)
         // increment number of colonies
         Colony.numColonies++
         // set name based on number
@@ -48,7 +50,8 @@ class Colony: NSObject, NSCoding {
     required init(coder aDecoder: NSCoder) {
         cells = aDecoder.decodeObjectForKey("cells") as [Int]
         name = aDecoder.decodeObjectForKey("name") as String
-        size = aDecoder.decodeIntegerForKey("size") as Int
+        rows = aDecoder.decodeIntegerForKey("rows") as Int
+        cols = aDecoder.decodeIntegerForKey("cols") as Int
         numGens = aDecoder.decodeIntegerForKey("numGens") as Int
         Colony.numColonies = aDecoder.decodeIntegerForKey("numColonies") as Int
     }
@@ -57,14 +60,15 @@ class Colony: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(cells, forKey: "cells")
         aCoder.encodeObject(name, forKey: "name")
-        aCoder.encodeInteger(size, forKey: "size")
+        aCoder.encodeInteger(rows, forKey: "rows")
+        aCoder.encodeInteger(cols, forKey: "cols")
         aCoder.encodeInteger(numGens, forKey: "numGens")
         aCoder.encodeInteger(Colony.numColonies, forKey: "numColonies")
     }
     
     // helper function to find virtual index in cells array
     private func index(row: Int, _ col: Int) -> Int {
-        return (((size + 2) * (row + 1)) + (col + 1))
+        return (((cols + 2) * (row + 1)) + (col + 1))
     }
     
     // helper functin to return value at coordinate
@@ -100,8 +104,8 @@ class Colony: NSObject, NSCoding {
         // counter
         var livingCells = 0
         // iterate through all cells and check if they are alive
-        for row in 0..<size {
-            for col in 0..<size {
+        for row in 0..<rows {
+            for col in 0..<cols {
                 if isCellAliveAtRow(row, col: col){
                     livingCells++
                 }
@@ -139,11 +143,11 @@ class Colony: NSObject, NSCoding {
         numGens++
         var numSur = 0
         var curCell = CELL_DEAD
-        var newCells = [Int](count: (size + 2) * (size + 2), repeatedValue: CELL_DEAD)
+        var newCells = [Int](count: (rows + 2) * (cols + 2), repeatedValue: CELL_DEAD)
         
         // iterate through all cells and calculate evolved colony
-        for row in 0..<size {
-            for col in 0..<size {
+        for row in 0..<rows {
+            for col in 0..<cols {
                 if isCellAliveAtRow(row, col: col) {
                     newCells[index(row, col)] = CELL_ALIVE
                 }
@@ -161,8 +165,8 @@ class Colony: NSObject, NSCoding {
         // base string
         var stringColony = "Generation: \(numGens)\n"
         // iterate through all cells and append to stringColony
-        for row in 0..<size {
-            for col in 0..<size {
+        for row in 0..<rows {
+            for col in 0..<cols {
                 if isCellAliveAtRow(row, col: col){
                     stringColony += "*"
                 } else {
