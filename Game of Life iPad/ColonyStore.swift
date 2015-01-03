@@ -14,19 +14,25 @@ private let colonyStore = ColonyStore()
 class ColonyStore: NSObject, NSCoding {
     
     // array of colonies
-    private var colonies = [Colony]()
+    private(set) var colonies = [Colony]()
     
     // shared singleton
     class var sharedColonyStore: ColonyStore {
         return colonyStore
     }
     
+    // number of colonies
     var count: Int {
         return colonies.count
     }
     
     // provide designed initializer
     override init() { }
+    
+    // set store to array of new colonies - used for unarchiving from file
+    func set(newColonies: [Colony]) {
+        self.colonies = newColonies
+    }
     
     // initialize colonies array
     required init(coder aDecoder: NSCoder) {

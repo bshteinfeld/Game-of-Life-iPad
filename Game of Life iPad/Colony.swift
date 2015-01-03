@@ -11,16 +11,16 @@ import Foundation
 // class variable workaround
 private var _numColonies = 0
 
-class Colony {
+class Colony: NSObject, NSCoding {
     // declare constants
-    let size: Int
     let CELL_ALIVE = 1
     let CELL_DEAD = 0
-    let name: String
     
     // declare properties
+    var size: Int
     var numGens = 0
     var cells: [Int]
+    var name: String
     
     // number of colonies
     class var numColonies: Int {
@@ -42,6 +42,24 @@ class Colony {
         Colony.numColonies++
         // set name based on number
         name = "Colony #\(Colony.numColonies)"
+    }
+    
+    // initalize colony from disk
+    required init(coder aDecoder: NSCoder) {
+        cells = aDecoder.decodeObjectForKey("cells") as [Int]
+        name = aDecoder.decodeObjectForKey("name") as String
+        size = aDecoder.decodeIntegerForKey("size") as Int
+        numGens = aDecoder.decodeIntegerForKey("numGens") as Int
+        Colony.numColonies = aDecoder.decodeIntegerForKey("numColonies") as Int
+    }
+    
+    // encode colony to disk
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(cells, forKey: "cells")
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeInteger(size, forKey: "size")
+        aCoder.encodeInteger(numGens, forKey: "numGens")
+        aCoder.encodeInteger(Colony.numColonies, forKey: "numColonies")
     }
     
     // helper function to find virtual index in cells array
