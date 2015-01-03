@@ -45,16 +45,22 @@ class ColonyView: UIView {
         // iterate through cells, painting alive ones
         for r in 0..<colony.rows {
             for c in 0..<colony.cols {
+                // determine color to paint based on livliness of current cell
                 if colony.isCellAliveAtRow(r, col: c) {
                     cellColor = UIColor.greenColor()
                 } else {
                     cellColor = UIColor.whiteColor()
                 }
+                // draw cell
                 cellColor.setFill()
-                let cell: CGRect = CGRect(x: CGFloat(Float(cellSize) * Float(c)), y: CGFloat(Float(cellSize) * Float(r)), width: CGFloat(cellSize), height: CGFloat(cellSize))
+                let cell: CGRect = CGRect(x: CGFloat(Float(cellSize) * Float(c) + 1.0), y: CGFloat(Float(cellSize) * Float(r) + 1.0), width: CGFloat(cellSize - 2.0), height: CGFloat(cellSize - 2.0))
                 CGContextFillRect(ctx, cell)
             }
         }
+        
+        // draw green border
+        self.layer.borderColor = UIColor.greenColor().CGColor
+        self.layer.borderWidth = 1.0
     }
     
     // compares equality of tuples
