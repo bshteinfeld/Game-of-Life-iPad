@@ -13,7 +13,7 @@ class ColonyView: UIView {
     // cell that is currently touched
     var curCellTouched: (Int, Int) = (-1, -1)
     var cellColor: UIColor = UIColor.greenColor()
-    var colony: Colony = Colony(numRows: 30, numCols: 40)
+    var colony: Colony = Colony()
     // size of graphical cells
     var cellSize: Float = -1.0
     var touchSettingAlive = true

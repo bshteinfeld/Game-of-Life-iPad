@@ -34,6 +34,14 @@ class Colony: NSObject, NSCoding {
         }
     }
     
+    // placeholder constructor for Colony, doesn't change numColonies
+    override init() {
+        rows = 1
+        cols = 1
+        cells = [Int](count: 9, repeatedValue: CELL_DEAD)
+        name = ""
+    }
+    
     // constructor for Colony
     init(numRows: Int, numCols: Int) {
         rows = numRows
