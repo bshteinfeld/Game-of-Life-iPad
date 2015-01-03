@@ -63,6 +63,11 @@ class ColonyView: UIView {
         // draw green border
         self.layer.borderColor = UIColor.greenColor().CGColor
         self.layer.borderWidth = 1.0
+        
+        // update data labels
+        if let vc = viewController as DetailViewController! {
+            vc.updateDataLabels()
+        }
     }
     
     // compares equality of tuples
@@ -95,9 +100,6 @@ class ColonyView: UIView {
             curCellTouched = (row, col)
             // update views
             self.setNeedsDisplay()
-            if let vc = viewController as DetailViewController! {
-                vc.updateDataLabels()
-            }
         }
     }
     
@@ -116,9 +118,6 @@ class ColonyView: UIView {
             }
             curCellTouched = (row, col)
             self.setNeedsDisplay()
-            if let vc = viewController as DetailViewController! {
-                vc.updateDataLabels()
-            }
         }
     }
     
