@@ -10,23 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    var detailItem: AnyObject? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
+    @IBOutlet weak var colonyView: ColonyView!
+    
+    var detailItem: Colony?
 
     func configureView() {
+        //colonyView = ColonyView()
+        
         // Update the user interface for the detail item.
-        if let detail: Colony = self.detailItem as? Colony {
-            if let label = self.detailDescriptionLabel {
-                detail.setCellAliveAtRow(0, col: 0)
-                label.text = detail.name
-            }
+        if let colony: Colony = self.detailItem as Colony! {
+            colonyView.colony = colony
+            colonyView.setNeedsDisplay()
         }
     }
 

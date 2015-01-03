@@ -16,6 +16,7 @@
 		A3996BE21A57241F00AFC433 /* Game_of_Life_iPadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BE11A57241F00AFC433 /* Game_of_Life_iPadTests.swift */; };
 		A3996BEC1A5728ED00AFC433 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BEB1A5728ED00AFC433 /* Colony.swift */; };
 		A3996BEE1A5729A600AFC433 /* ColonyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996BED1A5729A600AFC433 /* ColonyStore.swift */; };
+		A3996C201A5772D600AFC433 /* ColonyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3996C1F1A5772D600AFC433 /* ColonyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		A3996BE11A57241F00AFC433 /* Game_of_Life_iPadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_of_Life_iPadTests.swift; sourceTree = "<group>"; };
 		A3996BEB1A5728ED00AFC433 /* Colony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
 		A3996BED1A5729A600AFC433 /* ColonyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyStore.swift; sourceTree = "<group>"; };
+		A3996C1F1A5772D600AFC433 /* ColonyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColonyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				A3996BCB1A57241F00AFC433 /* MasterViewController.swift */,
 				A3996BEB1A5728ED00AFC433 /* Colony.swift */,
 				A3996BED1A5729A600AFC433 /* ColonyStore.swift */,
+				A3996C1F1A5772D600AFC433 /* ColonyView.swift */,
 				A3996BCD1A57241F00AFC433 /* DetailViewController.swift */,
 				A3996BCF1A57241F00AFC433 /* Main.storyboard */,
 				A3996BD21A57241F00AFC433 /* Images.xcassets */,
@@ -223,6 +226,7 @@
 			files = (
 				A3996BCE1A57241F00AFC433 /* DetailViewController.swift in Sources */,
 				A3996BCC1A57241F00AFC433 /* MasterViewController.swift in Sources */,
+				A3996C201A5772D600AFC433 /* ColonyView.swift in Sources */,
 				A3996BCA1A57241F00AFC433 /* AppDelegate.swift in Sources */,
 				A3996BEC1A5728ED00AFC433 /* Colony.swift in Sources */,
 				A3996BEE1A5729A600AFC433 /* ColonyStore.swift in Sources */,
