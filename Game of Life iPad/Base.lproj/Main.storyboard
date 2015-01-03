@@ -145,6 +145,8 @@
                         <outlet property="cellsAliveLabel" destination="YmP-9h-2Cz" id="RUy-1h-8S3"/>
                         <outlet property="colonyView" destination="dOI-cC-oYH" id="koA-wg-Q6X"/>
                         <outlet property="genLabel" destination="RwO-WU-0D4" id="fcR-4Z-lFu"/>
+                        <outlet property="slider" destination="2ZD-JI-TgW" id="Y92-nj-vW9"/>
+                        <outlet property="wrapSwitch" destination="CjI-Eh-52l" id="t6b-ia-b1w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

@@ -12,6 +12,8 @@ class DetailViewController: UIViewController {
     
     // graphics outlets
     @IBOutlet weak var colonyView: ColonyView!
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var wrapSwitch: UISwitch!
     @IBOutlet weak var genLabel: UILabel!
     @IBOutlet weak var cellsAliveLabel: UILabel!
     
@@ -38,6 +40,15 @@ class DetailViewController: UIViewController {
         if let colony: Colony = self.detailItem as Colony! {
             colony.evolve()
             colonyView.setNeedsDisplay()
+            updateDataLabels()
+        }
+    }
+    
+    // update label which display data about the colony
+    func updateDataLabels() {
+        if let colony: Colony = self.detailItem as Colony! {
+            genLabel.text = "\(colony.numGens)"
+            cellsAliveLabel.text = "\(colony.getNumberLivingCells())"
         }
     }
     
@@ -54,6 +65,8 @@ class DetailViewController: UIViewController {
         // configure view
         if let colony: Colony = self.detailItem as Colony! {
             colonyView.colony = colony
+            wrapSwitch.on = colony.wrap
+            colonyView.viewController = self
             colonyView.setNeedsDisplay()
         }
     }

@@ -18,6 +18,8 @@ class ColonyView: UIView {
     var cellSize: Float = -1.0
     var touchSettingAlive = true
     
+    weak var viewController: DetailViewController?
+    
     // initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,8 +93,11 @@ class ColonyView: UIView {
             }
             // update current cell touched
             curCellTouched = (row, col)
-            // update view
+            // update views
             self.setNeedsDisplay()
+            if let vc = viewController as DetailViewController! {
+                vc.updateDataLabels()
+            }
         }
     }
     
@@ -111,6 +116,9 @@ class ColonyView: UIView {
             }
             curCellTouched = (row, col)
             self.setNeedsDisplay()
+            if let vc = viewController as DetailViewController! {
+                vc.updateDataLabels()
+            }
         }
     }
     
