@@ -35,27 +35,116 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOI-cC-oYH" customClass="ColonyView" customModule="Game_of_Life_iPad" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="568" height="426"/>
-                                <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dOI-cC-oYH" secondAttribute="height" multiplier="4:3" id="VW3-gZ-GEm"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2ZD-JI-TgW">
-                                <rect key="frame" x="14" y="518" width="572" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjI-Eh-52l">
+                                <rect key="frame" x="535" y="517" width="51" height="31"/>
+                                <connections>
+                                    <action selector="wrapToggled:" destination="JEX-9P-axG" eventType="valueChanged" id="hsZ-GZ-CRO"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Generation:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDU-LC-frf">
+                                <rect key="frame" x="16" y="565" width="90" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RwO-WU-0D4">
+                                <rect key="frame" x="114" y="565" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzS-su-Tpg">
+                                <rect key="frame" x="351" y="561" width="30" height="30"/>
+                                <state key="normal" title="E1">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTx-5P-y4h">
+                                <rect key="frame" x="389" y="561" width="30" height="30"/>
+                                <state key="normal" title="E10">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVA-Ba-iEO">
+                                <rect key="frame" x="427" y="561" width="30" height="30"/>
+                                <state key="normal" title="E50">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udo-Vd-4hF">
+                                <rect key="frame" x="465" y="561" width="35" height="30"/>
+                                <state key="normal" title="E100">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjv-OW-pqm">
+                                <rect key="frame" x="508" y="561" width="35" height="30"/>
+                                <state key="normal" title="E500">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cells Alive:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lX-Ef-LBv">
+                                <rect key="frame" x="185" y="565" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="27" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmP-9h-2Cz">
+                                <rect key="frame" x="277" y="565" width="20" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="2ZD-JI-TgW">
+                                <rect key="frame" x="77" y="518" width="398" height="31"/>
+                                <connections>
+                                    <action selector="speedChanged:" destination="JEX-9P-axG" eventType="valueChanged" id="mOM-MK-1Gi"/>
+                                </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Speed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8u-1w-cyk">
+                                <rect key="frame" x="16" y="522" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Wrap:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmB-XP-6OY">
+                                <rect key="frame" x="481" y="522" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OVA-Ba-iEO" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="13" id="7zI-2z-tBx"/>
+                            <constraint firstItem="RwO-WU-0D4" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="17" id="AUI-hB-Ldf"/>
+                            <constraint firstItem="K8u-1w-cyk" firstAttribute="top" secondItem="dOI-cC-oYH" secondAttribute="bottom" constant="24" id="E6q-PR-jjQ"/>
+                            <constraint firstItem="MDU-LC-frf" firstAttribute="top" secondItem="K8u-1w-cyk" secondAttribute="bottom" constant="22" id="KRD-xw-m3q"/>
+                            <constraint firstItem="gmB-XP-6OY" firstAttribute="top" secondItem="dOI-cC-oYH" secondAttribute="bottom" constant="24" id="Usw-hm-O9S"/>
                             <constraint firstItem="dOI-cC-oYH" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="Vxy-MP-JiE"/>
                             <constraint firstItem="dOI-cC-oYH" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="WYs-1q-MDI"/>
                             <constraint firstItem="dOI-cC-oYH" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="b7J-y2-eIS"/>
                             <constraint firstItem="2ZD-JI-TgW" firstAttribute="top" secondItem="dOI-cC-oYH" secondAttribute="bottom" constant="20" id="iW6-6t-BNz"/>
+                            <constraint firstItem="CjI-Eh-52l" firstAttribute="top" secondItem="dOI-cC-oYH" secondAttribute="bottom" constant="19" id="laU-Cq-F6b"/>
+                            <constraint firstItem="bzS-su-Tpg" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="13" id="n0K-Ur-uk7"/>
+                            <constraint firstItem="YmP-9h-2Cz" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="17" id="nO3-WD-AKb"/>
+                            <constraint firstItem="HTx-5P-y4h" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="13" id="pIz-zk-IjL"/>
+                            <constraint firstItem="udo-Vd-4hF" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="13" id="s3g-rM-xkD"/>
+                            <constraint firstItem="3lX-Ef-LBv" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="17" id="xgD-zV-hH9"/>
+                            <constraint firstItem="pjv-OW-pqm" firstAttribute="top" secondItem="2ZD-JI-TgW" secondAttribute="bottom" constant="13" id="zrm-pT-E0h"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="cellsAliveLabel" destination="YmP-9h-2Cz" id="RUy-1h-8S3"/>
                         <outlet property="colonyView" destination="dOI-cC-oYH" id="koA-wg-Q6X"/>
+                        <outlet property="genLabel" destination="RwO-WU-0D4" id="fcR-4Z-lFu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
