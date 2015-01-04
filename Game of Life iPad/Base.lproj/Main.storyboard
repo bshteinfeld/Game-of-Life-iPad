@@ -140,7 +140,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Colony" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" title="Details" id="uM3-SE-OBj">
+                            <connections>
+                                <segue destination="tCo-ZY-15y" kind="show" identifier="showSettings" id="bUX-NO-qqs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cellsAliveLabel" destination="YmP-9h-2Cz" id="RUy-1h-8S3"/>
                         <outlet property="colonyView" destination="dOI-cC-oYH" id="koA-wg-Q6X"/>
@@ -152,6 +158,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="783" y="120"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="eyZ-gO-6tH">
+            <objects>
+                <viewController id="tCo-ZY-15y" customClass="SettingsViewController" customModule="Game_of_Life_iPad" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pYk-Z2-V4e"/>
+                        <viewControllerLayoutGuide type="bottom" id="jzD-RA-OnA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D6T-s0-ycU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XH6-Ue-8jy" customClass="ColonyView" customModule="Game_of_Life_iPad" customModuleProvider="target">
+                                <rect key="frame" x="16" y="110" width="300" height="225"/>
+                                <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XH6-Ue-8jy" secondAttribute="height" multiplier="4:3" id="B71-2I-slc"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVA-vd-laQ">
+                                <rect key="frame" x="252" y="72" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="colonyNameChanged:" destination="tCo-ZY-15y" eventType="editingDidEnd" id="Ctk-L4-Yj4"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q30-YJ-TeJ">
+                                <rect key="frame" x="424" y="513" width="111" height="30"/>
+                                <state key="normal" title="Set Cells by List">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="coordinateListChosen:" destination="tCo-ZY-15y" eventType="touchUpInside" id="dPR-5h-FmI"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TPi-WS-8ZR">
+                                <rect key="frame" x="16" y="343" width="300" height="162"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0S-Qm-2jW">
+                                <rect key="frame" x="92" y="513" width="149" height="30"/>
+                                <state key="normal" title="Set Cells by Template">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="templateChosen:" destination="tCo-ZY-15y" eventType="touchUpInside" id="bNX-CF-QxD"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhI-ry-Htj">
+                                <rect key="frame" x="324" y="110" width="260" height="395"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="colonyView" destination="XH6-Ue-8jy" id="ZdF-y6-CLC"/>
+                        <outlet property="coordinateText" destination="vhI-ry-Htj" id="w7d-mD-kaw"/>
+                        <outlet property="templatePicker" destination="TPi-WS-8ZR" id="zAE-Gm-osu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZF6-Jc-NYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="829"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

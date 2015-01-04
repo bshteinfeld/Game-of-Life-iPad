@@ -52,6 +52,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // toggle wrapping mode
     @IBAction func wrapToggled(sender: UISwitch) {
         if let colony: Colony = self.detailItem as Colony! {
             colony.wrap = sender.on
@@ -70,7 +71,17 @@ class DetailViewController: UIViewController {
             colonyView.setNeedsDisplay()
         }
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSettings" {
+            let controller = segue.destinationViewController as SettingsViewController
+            //println("\(segue.destinationViewController.dynamicType.description())")
+            if let colony: Colony = detailItem as Colony! {
+                controller.colony = colony
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
