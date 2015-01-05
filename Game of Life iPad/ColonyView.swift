@@ -42,7 +42,7 @@ class ColonyView: UIView {
         self.backgroundColor = UIColor.clearColor()
         
         // calculate cell size
-        cellSize = Float(bounds.width) / Float(colony.cols);
+        cellSize = Float(bounds.width) / Float(colony.cols)
         
         // iterate through cells, painting alive ones
         for r in 0..<colony.rows {
