@@ -27,7 +27,57 @@ class ColonyStore: NSObject, NSCoding {
     }
     
     // provide designed initializer
-    override init() { }
+    override init() {
+        let basicT = Colony(numRows: 40, numCols: 40, name: "Basic-T")
+        basicT.setCellAliveAtRow(5, col: 5)
+        basicT.setCellAliveAtRow(5, col: 6)
+        basicT.setCellAliveAtRow(5, col: 7)
+        basicT.setCellAliveAtRow(6, col: 6)
+        let glider = Colony(numRows: 40, numCols: 40, name: "Glider")
+        glider.setCellAliveAtRow(5, col: 5)
+        glider.setCellAliveAtRow(6, col: 6)
+        glider.setCellAliveAtRow(7, col: 6)
+        glider.setCellAliveAtRow(7, col: 5)
+        glider.setCellAliveAtRow(7, col: 4)
+        let gliderGun = Colony(numRows: 40, numCols: 40, name: "Glider Gun")
+        gliderGun.setCellAliveAtRow(6, col: 2)
+        gliderGun.setCellAliveAtRow(6, col: 3)
+        gliderGun.setCellAliveAtRow(7, col: 2)
+        gliderGun.setCellAliveAtRow(7, col: 3)
+        gliderGun.setCellAliveAtRow(4, col: 14)
+        gliderGun.setCellAliveAtRow(4, col: 15)
+        gliderGun.setCellAliveAtRow(5, col: 13)
+        gliderGun.setCellAliveAtRow(6, col: 18)
+        gliderGun.setCellAliveAtRow(7, col: 12)
+        gliderGun.setCellAliveAtRow(7, col: 16)
+        gliderGun.setCellAliveAtRow(7, col: 18)
+        gliderGun.setCellAliveAtRow(7, col: 19)
+        gliderGun.setCellAliveAtRow(8, col: 12)
+        gliderGun.setCellAliveAtRow(8, col: 18)
+        gliderGun.setCellAliveAtRow(9, col: 13)
+        gliderGun.setCellAliveAtRow(9, col: 17)
+        gliderGun.setCellAliveAtRow(10, col: 14)
+        gliderGun.setCellAliveAtRow(10, col: 15)
+        gliderGun.setCellAliveAtRow(5, col: 17)
+        gliderGun.setCellAliveAtRow(6, col: 12)
+        gliderGun.setCellAliveAtRow(4, col: 22)
+        gliderGun.setCellAliveAtRow(4, col: 23)
+        gliderGun.setCellAliveAtRow(5, col:22)
+        gliderGun.setCellAliveAtRow(5, col: 23)
+        gliderGun.setCellAliveAtRow(6, col: 22)
+        gliderGun.setCellAliveAtRow(6, col: 23)
+        gliderGun.setCellAliveAtRow(3, col: 24)
+        gliderGun.setCellAliveAtRow(3, col: 26)
+        gliderGun.setCellAliveAtRow(2, col: 26)
+        gliderGun.setCellAliveAtRow(7, col: 24)
+        gliderGun.setCellAliveAtRow(7, col: 26)
+        gliderGun.setCellAliveAtRow(8, col: 26)
+        gliderGun.setCellAliveAtRow(4, col: 36)
+        gliderGun.setCellAliveAtRow(4, col: 37)
+        gliderGun.setCellAliveAtRow(5, col: 36)
+        gliderGun.setCellAliveAtRow(5, col: 37)
+        colonies = [basicT, glider, gliderGun]
+    }
     
     // set store to array of new colonies - used for unarchiving from file
     func set(newColonies: [Colony]) {

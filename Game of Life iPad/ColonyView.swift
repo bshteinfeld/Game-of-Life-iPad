@@ -49,9 +49,11 @@ class ColonyView: UIView {
             for c in 0..<colony.cols {
                 // determine color to paint based on livliness of current cell
                 if colony.isCellAliveAtRow(r, col: c) {
-                    cellColor = UIColor.greenColor()
+                    // blue
+                    cellColor = UIColor(red: 0.07, green: 0.42, blue: 0.98, alpha: 1.0)
                 } else {
-                    cellColor = UIColor.whiteColor()
+                    // light gray
+                    cellColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
                 }
                 // draw cell
                 cellColor.setFill()
@@ -60,8 +62,8 @@ class ColonyView: UIView {
             }
         }
         
-        // draw green border
-        self.layer.borderColor = UIColor.greenColor().CGColor
+        // draw border
+        self.layer.borderColor = UIColor(red: 0.07, green: 0.42, blue: 0.98, alpha: 1.0).CGColor
         self.layer.borderWidth = 1.0
         
         // update data labels

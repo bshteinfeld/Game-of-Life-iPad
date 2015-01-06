@@ -29,6 +29,11 @@ class MasterViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = addButton
         let controllers = self.splitViewController!.viewControllers
         self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+        
+        // automatically switch to first colony
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+        self.performSegueWithIdentifier("showDetail", sender: self)
     }
 
     override func didReceiveMemoryWarning() {

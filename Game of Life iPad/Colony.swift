@@ -55,6 +55,15 @@ class Colony: NSObject, NSCoding {
         name = "Colony #\(Colony.numColonies)"
     }
     
+    // constructor with name, does not count for colony count
+    init(numRows: Int, numCols: Int, name: String) {
+        rows = numRows
+        cols = numCols
+        // set memory of cells to 0, including "border of death"
+        cells = [Int](count: ((rows + 2)*(cols + 2)), repeatedValue: CELL_DEAD)
+        self.name = name
+    }
+    
     // initalize colony from disk
     required init(coder aDecoder: NSCoder) {
         cells = aDecoder.decodeObjectForKey("cells") as [Int]
