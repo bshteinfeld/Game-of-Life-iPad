@@ -53,6 +53,71 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     // update colony with template
     @IBAction func templateChosen(sender: UIButton) {
+        if let c: Colony = colony as Colony! {
+            c.resetCells()
+            switch templatePicker.selectedRowInComponent(0) {
+            case 0:
+                c.setCellAliveAtRow(5, col: 5)
+                c.setCellAliveAtRow(5, col: 6)
+                c.setCellAliveAtRow(5, col: 7)
+                c.setCellAliveAtRow(6, col: 6)
+            case 1:
+                c.setCellAliveAtRow(5, col: 5)
+                c.setCellAliveAtRow(6, col: 6)
+                c.setCellAliveAtRow(7, col: 6)
+                c.setCellAliveAtRow(7, col: 5)
+                c.setCellAliveAtRow(7, col: 4)
+            case 2:
+                c.setCellAliveAtRow(6, col: 2)
+                c.setCellAliveAtRow(6, col: 3)
+                c.setCellAliveAtRow(7, col: 2)
+                c.setCellAliveAtRow(7, col: 3)
+                c.setCellAliveAtRow(4, col: 14)
+                c.setCellAliveAtRow(4, col: 15)
+                c.setCellAliveAtRow(5, col: 13)
+                c.setCellAliveAtRow(6, col: 18)
+                c.setCellAliveAtRow(7, col: 12)
+                c.setCellAliveAtRow(7, col: 16)
+                c.setCellAliveAtRow(7, col: 18)
+                c.setCellAliveAtRow(7, col: 19)
+                c.setCellAliveAtRow(8, col: 12)
+                c.setCellAliveAtRow(8, col: 18)
+                c.setCellAliveAtRow(9, col: 13)
+                c.setCellAliveAtRow(9, col: 17)
+                c.setCellAliveAtRow(10, col: 14)
+                c.setCellAliveAtRow(10, col: 15)
+                c.setCellAliveAtRow(5, col: 17)
+                c.setCellAliveAtRow(6, col: 12)
+                c.setCellAliveAtRow(4, col: 22)
+                c.setCellAliveAtRow(4, col: 23)
+                c.setCellAliveAtRow(5, col:22)
+                c.setCellAliveAtRow(5, col: 23)
+                c.setCellAliveAtRow(6, col: 22)
+                c.setCellAliveAtRow(6, col: 23)
+                c.setCellAliveAtRow(3, col: 24)
+                c.setCellAliveAtRow(3, col: 26)
+                c.setCellAliveAtRow(2, col: 26)
+                c.setCellAliveAtRow(7, col: 24)
+                c.setCellAliveAtRow(7, col: 26)
+                c.setCellAliveAtRow(8, col: 26)
+                c.setCellAliveAtRow(4, col: 36)
+                c.setCellAliveAtRow(4, col: 37)
+                c.setCellAliveAtRow(5, col: 36)
+                c.setCellAliveAtRow(5, col: 37)
+            case 3:
+                for row in 0..<c.rows {
+                    for col in 0..<c.cols {
+                        if Float(drand48()) < 0.6 {
+                            c.setCellAliveAtRow(row, col: col)
+                        }
+                    }
+                }
+            default:
+                break
+            }
+            colonyView.setNeedsDisplay()
+            coordinateText.text = c.description()
+        }
     }
     
     // update colony with list of coordinates
