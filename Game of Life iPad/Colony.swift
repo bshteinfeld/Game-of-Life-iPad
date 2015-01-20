@@ -208,20 +208,91 @@ class Colony: NSObject, NSCoding {
         cells = newCells
     }
     
+    // determines if a cell is valid
+    func isValidCell(row: Int, col: Int) -> Bool {
+        if (0..<rows).contains(row) && (0..<cols).contains(col) {
+            return true
+        }
+        return false
+    }
+    
+    // clear cells array
+    func resetCells() {
+        for row in 0..<rows {
+            for col in 0..<cols {
+                setCellDeadAtRow(row, col: col)
+            }
+        }
+    }
+    
+    // given a list of coordinates, return an optional array of tuples of coordinates
+    func extractCellsFromString(colonyString: String) -> [(Int, Int)]? {
+        // holds cells to return
+        var rcells = [(Int, Int)]()
+        
+        // split string into an array of string, each element representating one coordinate
+        let newCells = split(colonyString) {
+            $0 == "\n"
+        }
+        
+        // iterate over all coordinate
+        for cell in newCells {
+            // split each coordinate into row and col
+            let coor = split(cell) {
+                $0 == " "
+            }
+            
+            // extract row and col with error checking
+            if coor.count == 2 {
+                if let row = coor[0].toInt() {
+                    if let col = coor[1].toInt() {
+                        if isValidCell(row, col: col) {
+                            rcells.append( (row, col) )
+                        } else {
+                            return nil
+                        }
+                    } else {
+                        return nil
+                    }
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+            
+        }
+        
+        return rcells
+    }
+    
+    // given a list of coordinate, set them alive
+    func loadCellsFromList(colonyString: String) -> Bool {
+        // clear current cells
+        resetCells()
+        
+        // if string is valid, set all given cells alive
+        if let newCells = extractCellsFromString(colonyString) {
+            for (row, col) in newCells {
+                setCellAliveAtRow(row, col: col)
+            }
+        } else {
+            return false
+        }
+        return true
+    }
+    
     // return string representation of colony
     func description() -> String {
         // base string
-        var stringColony = "Generation: \(numGens)\n"
+        var stringColony = ""
         // iterate through all cells and append to stringColony
         for row in 0..<rows {
             for col in 0..<cols {
                 if isCellAliveAtRow(row, col: col){
-                    stringColony += "*"
-                } else {
-                    stringColony += " "
+                    stringColony += "\(row) \(col)\n"
                 }
             }
-            stringColony += "\n"
         }
         return stringColony
     }

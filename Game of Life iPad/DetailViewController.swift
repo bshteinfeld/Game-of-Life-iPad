@@ -72,6 +72,12 @@ class DetailViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        if timer.valid {
+            timer.invalidate()
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showSettings" {
             let controller = segue.destinationViewController as SettingsViewController

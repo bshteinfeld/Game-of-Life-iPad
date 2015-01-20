@@ -36,6 +36,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             colonyView.userInteractionEnabled = false
             
             // TODO -- update list of coordinates
+            coordinateText.text = c.description()
         }
     }
     
@@ -45,6 +46,17 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     // update colony with list of coordinates
     @IBAction func coordinateListChosen(sender: UIButton) {
+        if let c: Colony = colony as Colony! {
+            // attempt to load cells to colony
+            // if cells loaded succesfully, update display, else display error alert
+            if c.loadCellsFromList(coordinateText.text) {
+                colonyView.setNeedsDisplay()
+            } else {
+                var alert = UIAlertController(title: "Error Loading Cells", message: "Invalid coordinate entered", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     // update colony name
