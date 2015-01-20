@@ -12,6 +12,7 @@ import UIKit
 class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // graphical outlets
     @IBOutlet weak var colonyView: ColonyView!
+    @IBOutlet weak var oldColonyView: ColonyView!
     @IBOutlet weak var templatePicker: UIPickerView!
     @IBOutlet weak var coordinateText: UITextView!
     
@@ -19,6 +20,8 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let templates = ["Basic-T", "Glider", "Glider-Gun", "Random"]
     // colony for which settings are displayed
     var colony: Colony?
+    // old colony
+    var originalColony: Colony!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,15 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             // disable user interaction -- touch delegate methods no longer called
             colonyView.userInteractionEnabled = false
             
-            // TODO -- update list of coordinates
+            // get copy of colony
+            originalColony = c.copyColony()
+            // assign old colony to oldColonyView and update view
+            oldColonyView.colony = originalColony
+            oldColonyView.setNeedsDisplay()
+            // disable interaction
+            oldColonyView.userInteractionEnabled = false
+            
+            // update list of coordinates
             coordinateText.text = c.description()
         }
     }
@@ -52,11 +63,21 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             if c.loadCellsFromList(coordinateText.text) {
                 colonyView.setNeedsDisplay()
             } else {
+                // create and display alert
                 var alert = UIAlertController(title: "Error Loading Cells", message: "Invalid coordinate entered", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    @IBAction func revertChanges(sender: UIButton) {
+        // copy cells from originalColony
+        colonyView.colony.cells = originalColony.cells
+        
+        // update views
+        colonyView.setNeedsDisplay()
+        coordinateText.text = colonyView.colony.description()
     }
     
     // update colony name

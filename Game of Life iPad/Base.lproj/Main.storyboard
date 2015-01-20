@@ -350,10 +350,6 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-MP-031">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Colony" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjR-go-bGp">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -372,6 +368,9 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="revertChanges:" destination="tCo-ZY-15y" eventType="touchUpInside" id="eVX-PG-2GF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Colony Templates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJZ-2E-keu">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -406,6 +405,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-MP-031" customClass="ColonyView" customModule="Game_of_Life_iPad" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -458,7 +461,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="iEd-MP-031"/>
                                 <exclude reference="CjR-go-bGp"/>
                                 <exclude reference="Rod-Lb-zlb"/>
                                 <exclude reference="QQl-Yx-JvG"/>
@@ -468,6 +470,7 @@
                                 <exclude reference="8dj-eP-iYt"/>
                                 <exclude reference="cOd-F8-3QF"/>
                                 <exclude reference="zTw-d1-waT"/>
+                                <exclude reference="iEd-MP-031"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="8Ri-GB-XmD"/>
@@ -518,7 +521,6 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
-                                <include reference="iEd-MP-031"/>
                                 <include reference="CjR-go-bGp"/>
                                 <include reference="Rod-Lb-zlb"/>
                                 <include reference="QQl-Yx-JvG"/>
@@ -528,6 +530,7 @@
                                 <include reference="8dj-eP-iYt"/>
                                 <include reference="cOd-F8-3QF"/>
                                 <include reference="zTw-d1-waT"/>
+                                <include reference="iEd-MP-031"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="8Ri-GB-XmD"/>
@@ -582,6 +585,7 @@
                     <connections>
                         <outlet property="colonyView" destination="XH6-Ue-8jy" id="ZdF-y6-CLC"/>
                         <outlet property="coordinateText" destination="vhI-ry-Htj" id="w7d-mD-kaw"/>
+                        <outlet property="oldColonyView" destination="iEd-MP-031" id="El9-tj-9jM"/>
                         <outlet property="templatePicker" destination="TPi-WS-8ZR" id="zAE-Gm-osu"/>
                     </connections>
                 </viewController>

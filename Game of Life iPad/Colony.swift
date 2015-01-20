@@ -84,6 +84,13 @@ class Colony: NSObject, NSCoding {
         aCoder.encodeInteger(Colony.numColonies, forKey: "numColonies")
     }
     
+    // return a copy of the current colony
+    func copyColony() -> Colony {
+        let newColony = Colony(numRows: rows, numCols: cols, name: name)
+        newColony.cells = self.cells
+        return newColony
+    }
+    
     // helper function to find virtual index in cells array
     private func index(row: Int, _ col: Int) -> Int {
         return (((cols + 2) * (row + 1)) + (col + 1))
