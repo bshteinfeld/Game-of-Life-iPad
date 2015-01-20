@@ -21,7 +21,9 @@ class DetailViewController: UIViewController {
     var timer: NSTimer = NSTimer()
     // colony
     var detailItem: Colony?
-
+    // counter for quick evolve buttons
+    var quickEvolveCounter = 0
+    
     // called each time slider is moved
     @IBAction func speedChanged(sender: UISlider) {
         // kill old timer
@@ -38,6 +40,15 @@ class DetailViewController: UIViewController {
     // evolve the colony once and update the view
     func updateView() {
         if let colony: Colony = self.detailItem as Colony! {
+            // check if quick evolve is over
+            if quickEvolveCounter == 0 {
+                // reset timer and slider
+                timer.invalidate()
+                slider.value = 0.0
+            }
+            // decrement counter
+            quickEvolveCounter--
+            // evolve once and update views
             colony.evolve()
             colonyView.setNeedsDisplay()
             updateDataLabels()
@@ -59,6 +70,22 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // event handler for quick evolve buttons
+    @IBAction func evolveXTimes(send: UIButton) {
+        // stop current timer
+        if timer.valid {
+            timer.invalidate()
+        }
+        let c = colonyView.colony
+        
+        // initialize counter according to which quick evolve button was pressed
+        quickEvolveCounter = send.tag
+        // change slider value
+        slider.value = slider.maximumValue / 2
+        // initialize new timer
+        timer = NSTimer.scheduledTimerWithTimeInterval(Double(1/slider.value), target: self, selector: "updateView", userInfo: nil, repeats: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -76,6 +103,7 @@ class DetailViewController: UIViewController {
         if timer.valid {
             timer.invalidate()
         }
+        quickEvolveCounter = 0
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
