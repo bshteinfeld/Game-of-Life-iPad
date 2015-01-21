@@ -100,6 +100,7 @@ class ColonyView: UIView {
             }
             // update current cell touched
             curCellTouched = (row, col)
+            viewController?.updateTouchedLabel(row, col: col)
             // update views
             self.setNeedsDisplay()
         }
@@ -119,6 +120,7 @@ class ColonyView: UIView {
                 colony.setCellDeadAtRow(row, col: col)
             }
             curCellTouched = (row, col)
+            viewController?.updateTouchedLabel(row, col: col)
             self.setNeedsDisplay()
         }
     }

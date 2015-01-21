@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var wrapSwitch: UISwitch!
     @IBOutlet weak var genLabel: UILabel!
     @IBOutlet weak var cellsAliveLabel: UILabel!
+    @IBOutlet weak var touchingLabel: UILabel!
     
     // timer used or delay between evolves
     var timer: NSTimer = NSTimer()
@@ -63,6 +64,10 @@ class DetailViewController: UIViewController {
         }
     }
     
+    func updateTouchedLabel(row: Int, col: Int) {
+        touchingLabel.text = "\(row) X \(col)"
+    }
+    
     // toggle wrapping mode
     @IBAction func wrapToggled(sender: UISwitch) {
         if let colony: Colony = self.detailItem as Colony! {
@@ -93,10 +98,15 @@ class DetailViewController: UIViewController {
         // configure view
         if let colony: Colony = self.detailItem as Colony! {
             colonyView.colony = colony
+            self.title = colony.name
             wrapSwitch.on = colony.wrap
             colonyView.viewController = self
             colonyView.setNeedsDisplay()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        colonyView.setNeedsDisplay()
     }
     
     override func viewWillDisappear(animated: Bool) {

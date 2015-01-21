@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var oldColonyView: ColonyView!
     @IBOutlet weak var templatePicker: UIPickerView!
     @IBOutlet weak var coordinateText: UITextView!
+    @IBOutlet weak var nameField: UITextField!
     
     // template colonies that can chose in picker
     let templates = ["Basic-T", "Glider", "Glider-Gun", "Random"]
@@ -45,6 +46,12 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             oldColonyView.setNeedsDisplay()
             // disable interaction
             oldColonyView.userInteractionEnabled = false
+            
+            // display colony name
+            nameField.text = c.name
+            nameField.textAlignment = .Center
+            // disable editing
+            nameField.userInteractionEnabled = false
             
             // update list of coordinates
             coordinateText.text = c.description()
