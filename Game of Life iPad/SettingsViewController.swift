@@ -16,6 +16,8 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var templatePicker: UIPickerView!
     @IBOutlet weak var coordinateText: UITextView!
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var generationLabel: UILabel!
+    @IBOutlet weak var percentLabel: UILabel!
     
     // template colonies that can chose in picker
     let templates = ["Basic-T", "Glider", "Glider-Gun", "Random"]
@@ -55,6 +57,9 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             
             // update list of coordinates
             coordinateText.text = c.description()
+            // update info labels
+            generationLabel.text = "\(c.getGenerationNumber())"
+            percentLabel.text = "\(Float(c.getNumberLivingCells()*100) / Float(c.rows*c.cols)) %"
         }
     }
     
@@ -124,6 +129,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
             colonyView.setNeedsDisplay()
             coordinateText.text = c.description()
+            percentLabel.text = "\(Float(c.getNumberLivingCells()*100) / Float(c.rows*c.cols)) %"
         }
     }
     
@@ -134,6 +140,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             // if cells loaded succesfully, update display, else display error alert
             if c.loadCellsFromList(coordinateText.text) {
                 colonyView.setNeedsDisplay()
+                percentLabel.text = "\(Float(c.getNumberLivingCells()*100) / Float(c.rows*c.cols)) %"
             } else {
                 // create and display alert
                 var alert = UIAlertController(title: "Error Loading Cells", message: "Invalid coordinate entered", preferredStyle: UIAlertControllerStyle.Alert)
@@ -150,6 +157,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // update views
         colonyView.setNeedsDisplay()
         coordinateText.text = colonyView.colony.description()
+        percentLabel.text = "\(Float(colonyView.colony.getNumberLivingCells()*100) / Float(colonyView.colony.rows*colonyView.colony.cols)) %"
     }
     
     // update colony name

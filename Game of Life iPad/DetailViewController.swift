@@ -107,6 +107,7 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         colonyView.setNeedsDisplay()
+        touchingLabel.text = "_ X _"
     }
     
     override func viewWillDisappear(animated: Bool) {
